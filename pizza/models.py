@@ -5,16 +5,17 @@ class Group(models.Model):
     """Модель группы для ингридиентов"""
     INPUT_CHOISES = (
         ('radio', 'Радио-кнопки'),
-        ('input', 'Ввод'),
+        ('number', 'Числовой ввод'),
         ('checkbox', 'Флажки'),
         ('select', 'Выпадающий список'),
     )
 
     name = models.CharField(max_length=64, help_text='Название группы ингредиентов')
     type = models.CharField(max_length=7, choices=INPUT_CHOISES, default='input', help_text='Поля выбора')
+    sort_index = models.IntegerField(default=5, help_text='Индекс сортировки вывода группы полей')
 
     class Meta:
-        ordering = ["name"]
+        ordering = ["sort_index"]
 
     def __str__(self):
         return self.name
@@ -27,7 +28,7 @@ class Ingredient(models.Model):
     price = models.FloatField(null=True, default=0, help_text='Цена за еденицу')
 
     class Meta:
-        ordering = ["name"]
+        ordering = ["price"]
 
     def __str__(self):
         return self.name

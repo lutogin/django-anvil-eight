@@ -4,8 +4,8 @@ from . import models
 
 @admin.register(models.Group)
 class GroupAdmin(admin.ModelAdmin):
-    list_display = ('name', 'type')
-    fields = ['name', 'type']
+    list_display = ('name', 'type', 'sort_index')
+    fields = ['name', 'type', 'sort_index']
 
 
 @admin.register(models.Ingredient)
