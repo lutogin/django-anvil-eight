@@ -28,7 +28,7 @@ class Ingredient(models.Model):
     price = models.FloatField(null=True, default=0, help_text='Цена за еденицу')
 
     class Meta:
-        ordering = ["price"]
+        ordering = ['price', 'group__name']
 
     def __str__(self):
         return self.name

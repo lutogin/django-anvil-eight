@@ -3,29 +3,33 @@
 {% block title %}Главная{% endblock %}
 
 {% block content %}
-    <form action="">
-    {% csrf_token %}
-    {% for key_group, value_group in elements.items %}
-        <h2>{{ value_group.type }}</h2>
-        <div>
-            <hr>
-            <h1>{{ key_group }}</h1>
-            <span>
-                {% for ingredient in value_group %}
-                    <h2>{{key_group.name}}</h2>
-                    <div>
-                        <input id="{{ ingredient.id }}"
-                               type="{{ value_group.type }}"
-                               name="{% if value_group.type == 'radio'%}{{ value_group.name }}{% else %}{{ ingredient.name }}{% endif %}">
-                        <label for="{{ ingredient.id }}">
-                            {{ ingredient.name }}{% if ingredient.price %}({{ ingredient.price }}$){% endif %}
-                        </label>
+    <form action="" class="index-form">
+        {% csrf_token %}
+        {% for key, value in elements.items %}
+            <div>
+                <h1>{{ value.group.name }}</h1>
+                {% for key_ing, value_ing in value.ingredients.items %}
+                    <div class="input-group {{ value.group.type }}">
+                        <div class="input-group-prepend">
+                            <label for="item-{{ value_ing.id }}" class="input-group-text">
+                                {{ value_ing.name }}{% if value_ing.price %}({{ value_ing.price }}$){% endif %}
+                            </label>
+                        </div>
+                        <input id="item-{{ value_ing.id }}"
+                               type="{{ value.group.type }}"
+                               class="form-control"
+                               name="{% if value.group.type == 'radio'%}{{ value.group.name }}{% else %}{{ value_ing.name }}{% endif %}"
+                               min="0"
+                               value="0">
                     </div>
                 {% endfor %}
-            </span>
+            </div>
+            <hr>
+        {% endfor %}
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="btn btn-primary">Заказать</button>
         </div>
-    {% endfor %}
-    <hr>
+        <hr>
     </form>
 
 {% endblock %}
