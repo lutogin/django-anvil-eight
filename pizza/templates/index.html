@@ -13,7 +13,7 @@
           <div class="input-group {{ element.group.type }}">
             <div class="input-group-prepend">
               <label for="item-{{ ingredient.id }}" class="input-group-text">
-                {{ ingredient.name }}{% if ingredient.price %}--({{ ingredient.price }}$){% endif %}
+                {{ ingredient.name }}{% if ingredient.price %}({{ ingredient.price }}$){% endif %}
               </label>
             </div>
             <input
