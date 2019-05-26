@@ -1,3 +1,4 @@
-.index-form .input-group.radio {
+.index-form .input-group.radio,
+.index-form .input-group.checkbox {
     width: 130px;
 }

@@ -6,8 +6,8 @@ class Group(models.Model):
     INPUT_CHOISES = (
         ('radio', 'Радио-кнопки'),
         ('number', 'Числовой ввод'),
-        ('checkbox', 'Флажки'),
-        ('select', 'Выпадающий список'),
+        # ('checkbox', 'Флажки'),
+        # ('select', 'Выпадающий список'),
     )
 
     name = models.CharField(max_length=64, help_text='Название группы ингредиентов')
@@ -23,8 +23,9 @@ class Group(models.Model):
 
 class Ingredient(models.Model):
     """Модель ингридиента"""
-    group = models.ForeignKey(Group, on_delete=models.CASCADE)
-    name = models.CharField(max_length=64, help_text='Название ингредиента')
+    group = models.ForeignKey(Group, on_delete=models.CASCADE, related_name='ingredients')
+    name = models.CharField(max_length=64, help_text='Название ингредиента (рус)')
+    # name = models.CharField(max_length=64, help_text='Уникальное имя ингредиента (eng, слитно)')
     price = models.FloatField(null=True, default=0, help_text='Цена за еденицу')
 
     class Meta:

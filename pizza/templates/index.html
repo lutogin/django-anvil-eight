@@ -3,33 +3,38 @@
 {% block title %}Главная{% endblock %}
 
 {% block content %}
-    <form action="" class="index-form">
-        {% csrf_token %}
-        {% for key, value in elements.items %}
-            <div>
-                <h1>{{ value.group.name }}</h1>
-                {% for key_ing, value_ing in value.ingredients.items %}
-                    <div class="input-group {{ value.group.type }}">
-                        <div class="input-group-prepend">
-                            <label for="item-{{ value_ing.id }}" class="input-group-text">
-                                {{ value_ing.name }}{% if value_ing.price %}({{ value_ing.price }}$){% endif %}
-                            </label>
-                        </div>
-                        <input id="item-{{ value_ing.id }}"
-                               type="{{ value.group.type }}"
-                               class="form-control"
-                               name="{% if value.group.type == 'radio'%}{{ value.group.name }}{% else %}{{ value_ing.name }}{% endif %}"
-                               min="0"
-                               value="0">
-                    </div>
-                {% endfor %}
+  <form action="/submit/" method="post" class="index-form" name="pizza-constructor">
+    {% csrf_token %}
+    {% for key, value in elements.items %}
+      <div>
+        <h1>{{ value.group.name }}</h1>
+        {% for key_ing, value_ing in value.ingredients.items %}
+          <div class="input-group {{ value.group.type }}">
+            <div class="input-group-prepend">
+              <label for="item-{{ value_ing.id }}" class="input-group-text">
+                {{ value_ing.name }}{% if value_ing.price %}--({{ value_ing.price }}$){% endif %}
+              </label>
             </div>
-            <hr>
+            <input id="item-{{ value_ing.id }}"
+                   type="{{ value.group.type }}"
+                   class="form-control"
+                   {% if value.group.type == 'radio' %}
+                    checked="checked"
+                    name="id-item-free-{{ value.group.id }}"
+                    value="{{ value_ing.id }}"
+                   {% else %}
+                    name="id-item-{{ value_ing.id }}"
+                    value="0"
+                    min="0"
+                   {% endif %}>
+          </div>
         {% endfor %}
-        <div class="d-flex justify-content-center">
-            <button type="submit" class="btn btn-primary">Заказать</button>
-        </div>
-        <hr>
-    </form>
-
+      </div>
+      <hr>
+    {% endfor %}
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary">Заказать</button>
+    </div>
+    <hr>
+  </form>
 {% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Заказ приянт{% endblock %}
+
+{% block script %}
+  <script src="{% static '/js/done-redirect.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+  <h1>Спасибо, {{ name }}!</h1>
+  <h1>Ваш заказ принят. Ожидайте оповещения на почту</h1>
+{% endblock %}
