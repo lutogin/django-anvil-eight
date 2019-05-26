@@ -5,35 +5,37 @@
 {% block content %}
   <form action="/submit/" method="post" class="index-form" name="pizza-constructor">
     {% csrf_token %}
-    {% for key, value in elements.items %}
+    {% for element in elements %}
       <div>
-        <h1>{{ value.group.name }}</h1>
-        {% for key_ing, value_ing in value.ingredients.items %}
-          <div class="input-group {{ value.group.type }}">
+        <h1>{{ element.group.name }}</h1>
+        {% for key, ingredient in element.ingredients.items %}
+          <div class="input-group {{ element.group.type }}">
             <div class="input-group-prepend">
-              <label for="item-{{ value_ing.id }}" class="input-group-text">
-                {{ value_ing.name }}{% if value_ing.price %}--({{ value_ing.price }}$){% endif %}
+              <label for="item-{{ ingredient.id }}" class="input-group-text">
+                {{ ingredient.name }}{% if ingredient.price %}--({{ ingredient.price }}$){% endif %}
               </label>
             </div>
-            <input id="item-{{ value_ing.id }}"
-                   type="{{ value.group.type }}"
-                   class="form-control"
-                   {% if value.group.type == 'radio' %}
-                    checked="checked"
-                    name="id-item-free-{{ value.group.id }}"
-                    value="{{ value_ing.id }}"
-                   {% else %}
-                    name="id-item-{{ value_ing.id }}"
-                    value="0"
-                    min="0"
-                   {% endif %}>
+            <input
+                id="item-{{ ingredient.id }}"
+                type="{{ element.group.type }}"
+                class="form-control"
+                {% if element.group.type == 'radio' %}
+                  checked="checked"
+                  name="id-item-free-{{ element.group.id }}"
+                  value="{{ ingredient.id }}"
+                {% else %}
+                  name="id-item-{{ ingredient.id }}"
+                  value="0"
+                  min="0"
+                {% endif %}
+            >
           </div>
         {% endfor %}
       </div>
       <hr>
     {% endfor %}
     <div class="d-flex justify-content-center">
-      <button type="submit" class="btn btn-primary">Заказать</button>
+      <button type="submit" class="btn btn-primary">Заказать &rarr;</button>
     </div>
     <hr>
   </form>

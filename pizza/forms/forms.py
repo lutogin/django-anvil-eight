@@ -4,6 +4,7 @@ from django import forms
 class BuyForm(forms.Form):
     email = forms.EmailField(
         label='Email',
+        required=True,
         widget=forms.TextInput(
             attrs={
                 'name': 'email',
@@ -16,6 +17,7 @@ class BuyForm(forms.Form):
 
     phone = forms.IntegerField(
         label='Телефон',
+        required=True,
         widget=forms.TextInput(
             attrs={
                 'name': 'phone',
@@ -28,6 +30,7 @@ class BuyForm(forms.Form):
 
     name = forms.CharField(
         label='Имя',
+        required=True,
         widget=forms.TextInput(
             attrs={
                 'name': 'name',

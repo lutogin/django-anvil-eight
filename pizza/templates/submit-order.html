@@ -30,7 +30,8 @@
     <input type="hidden" name="data_bill_json" value="{{ data_bill_json }}">
     <input type="hidden" name="summary_price" value="{{ form.summary_price.value }}">
     <hr>
-    <button type="submit" class="btn btn-primary">Подтвердить</button>
+    <a class="btn" href="{% url 'index' %}">&larr; Назад</a>
+    <button type="submit" class="btn btn-primary">Подтвердить &rarr;</button>
   </form>
 
 {% endblock %}
