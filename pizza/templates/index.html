@@ -3,11 +3,12 @@
 {% block title %}Главная{% endblock %}
 
 {% block content %}
+  <h1 class="text-center">Генератор пиццы v0.9 alpha</h1>
   <form action="/submit/" method="post" class="index-form" name="pizza-constructor">
     {% csrf_token %}
     {% for element in elements %}
       <div>
-        <h1>{{ element.group.name }}</h1>
+        <h3>{{ element.group.name }}</h3>
         {% for key, ingredient in element.ingredients.items %}
           <div class="input-group {{ element.group.type }}">
             <div class="input-group-prepend">

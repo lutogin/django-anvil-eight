@@ -1,14 +1,14 @@
 from django.shortcuts import render
 from django.http import HttpResponsePermanentRedirect, HttpResponse
-from .models import Group, Ingredient
-from .forms.forms import BuyForm
-from .mailing.mailing import send_mail
+from pizza.models import Group, Ingredient
+from pizza.forms.forms import BuyForm
+from pizza.utility.mailing import send_mail
 import re
 import json
 
 
 def index(req):
-    """Индексный контроллер для вывода"""
+    """Индексный контроллер"""
 
     """Разобьем данные по массиву"""
     elements_lst = []

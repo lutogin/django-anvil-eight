@@ -1,5 +1,5 @@
 from django.test import TestCase
-from ..models import Group, Ingredient
+from pizza.models import Group, Ingredient
 
 
 class ModelsTests(TestCase):

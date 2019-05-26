@@ -1,4 +1,4 @@
-from ..settings import pizza_settings
+from pizza.settings import pizza_settings
 import smtplib
 import email.message
 

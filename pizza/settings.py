@@ -2,8 +2,8 @@ pizza_settings = {
     'smtp': {
         'server': 'smtp.gmail.com',
         'port': 587,
-        'user': 'hekto.v8',
-        'password': 'Qz314159',
+        'user': 'USER',
+        'password': 'PASSWORD',
     },
-    'from': 'hekto.v8@gmail.com',
+    'from': 'FROM_MAIL',
 }
